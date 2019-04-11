@@ -1,5 +1,5 @@
 // Dependencies
-const validator = require('node-validator');
+const validator = require('node-validator')
 
 // Schemas
 module.exports = validator.isObject()
