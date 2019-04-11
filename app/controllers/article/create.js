@@ -3,12 +3,12 @@ const Schema = require('../../models/article.js')
 const validator = require('node-validator')
 const check = require('./payload-validator/create.js')
 
-module.exports = class Create {
+module.exports = class CreateArticle {
   constructor (app, config, connect) {
     this.app = app
     this.config = config
     this.check = check
-    this.UserModel = connect.model('article', Schema)
+    this.UserModel = connect.model('Article', Schema)
 
     this.run()
   }

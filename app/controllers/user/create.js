@@ -3,7 +3,7 @@ const Schema = require('../../models/user.js')
 const validator = require('node-validator')
 const check = require('./payload-validator/create.js')
 
-module.exports = class Create {
+module.exports = class CreateUser {
   constructor (app, config, connect) {
     this.app = app
     this.config = config

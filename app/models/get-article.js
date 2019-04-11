@@ -1,17 +1,20 @@
 module.exports = {
   '1': {
-    'name': 'cyril',
-    'age': 30,
-    'gender': 'male'
+    'title': 'article1',
+    'text': 'Afkfsmdlkf lfdsmkfdmdls ifjofjzejfùodskldfkdsjg ijfsmùfekzprozefreigregjfdskl elfkezmfkzep',
+    'date': '11/04/19',
+    'author': 'jack'
   },
   '2': {
-    'name': 'jp',
-    'age': 24,
-    'gender': 'male'
+    'title': 'article2',
+    'test': 'dfkdmlfkdlsmk mslkflk fksmdldfkmdk sldfkamekkmlkfùmslsk ekfeofldskflmsqk kdlfmkqlmfkokfmldsfkdmlq qlekfùlmdqskf dmlfk qldo',
+    'date': '11/04/19',
+    'author': 'jack'
   },
   '3': {
-    'name': 'guillaume',
-    'age': 2,
-    'gender': 'male'
+    'title': 'article3',
+    'test': 'reogrkgkdsfmdsfk dklfm skfsdkflsdk lsdkfmldklfksdùfk sldmkfmsdklmk lmk lmklmkesk lkfdlmkdsùmgdskf lskf sdkf slùdk lsfmdkf smdk ',
+    'date': '11/04/19',
+    'author': 'jack'
   }
 }

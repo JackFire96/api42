@@ -1,10 +1,10 @@
 // Core
-const mock = require('../../models/get-user.js')
-
+const Schema = require('../../models/user.js')
 module.exports = class Show {
-  constructor (app) {
+  constructor (app, config, connect) {
     this.app = app
-
+    this.config = config
+    this.UserModel = connect.model('User', Schema)
     this.run()
   }
 
@@ -14,14 +14,11 @@ module.exports = class Show {
   middleware () {
     this.app.get('/user/show/:id', (req, res) => {
       try {
-        if (!req.params || !req.params.id.length) {
-          res.status(404).json({
-            code: 404,
-            message: 'Not Found'
-          })
-        }
-
-        res.status(200).json(mock[req.params.id] || {})
+        this.UserModel.findById(req.params.id).then(user => {
+          res.status(200).json(user || {})
+        }).catch(() => {
+          res.status(200).json({})
+        })
       } catch (e) {
         console.error(`[ERROR] user/show/:id -> ${e}`)
         res.status(400).json({
