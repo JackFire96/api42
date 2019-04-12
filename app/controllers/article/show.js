@@ -1,10 +1,10 @@
 // Core
-const Schema = require('../../models/user.js')
-module.exports = class ShowUser {
+const Schema = require('../../models/article.js')
+module.exports = class ShowArticle {
   constructor (app, config, connect) {
     this.app = app
     this.config = config
-    this.UserModel = connect.model('User', Schema)
+    this.ArticleModel = connect.model('Article', Schema)
     this.run()
   }
 
@@ -12,15 +12,15 @@ module.exports = class ShowUser {
    * Middleware
    */
   middleware () {
-    this.app.get('/user/show/:id', (req, res) => {
+    this.app.get('/article/show/:id', (req, res) => {
       try {
-        this.UserModel.findById(req.params.id).then(user => {
-          res.status(200).json(user || {})
+        this.ArticleModel.findById(req.params.id).then(article => {
+          res.status(200).json(article || {})
         }).catch(() => {
           res.status(200).json({})
         })
       } catch (e) {
-        console.error(`[ERROR] user/show/:id -> ${e}`)
+        console.error(`[ERROR] article/show/:id -> ${e}`)
         res.status(400).json({
           'code': 400,
           'message': 'Bad request'
