@@ -1,14 +1,14 @@
 // Core
-const Schema = require('../../models/user.js')
+const Schema = require('../../models/article.js')
 const validator = require('node-validator')
 const check = require('./payload-validator/create.js')
 
-module.exports = class UpdateUser {
+module.exports = class UpdateArticle {
   constructor (app, config, connect) {
     this.app = app
     this.config = config
     this.check = check
-    this.UserModel = connect.model('User', Schema)
+    this.ArticleModel = connect.model('Article', Schema)
     this.run()
   }
 
@@ -16,16 +16,16 @@ module.exports = class UpdateUser {
    * Middleware
    */
   middleware () {
-    this.app.put('/user/update/:id', validator.express(this.check), (req, res) => {
+    this.app.put('/article/update/:id', validator.express(this.check), (req, res) => {
       var conditions = { _id: req.params.id }
       try {
-        this.UserModel.update(conditions, req.body).then(user => {
-          res.status(200).json(user || {})
+        this.ArticleModel.update(conditions, req.body).then(article => {
+          res.status(200).json(article || {})
         }).catch(() => {
           res.status(200).json({})
         })
       } catch (e) {
-        console.error(`[ERROR] user/update -> ${e}`)
+        console.error(`[ERROR] article/update -> ${e}`)
         res.status(400).json({
           'code': 400,
           'message': 'Bad request'

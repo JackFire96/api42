@@ -1,21 +1,23 @@
 const CreateUser = require('./user/create.js')
 const ShowUser = require('./user/show.js')
 const Search = require('./user/search.js')
-const Update = require('./user/update.js')
+const UpdateUser = require('./user/update.js')
 const Destroy = require('./user/destroy.js')
 
 const CreateArticle = require('./article/create.js')
 const ShowArticle = require('./article/show.js')
+const UpdateArticle = require('./article/update.js')
 module.exports = {
   user: {
     CreateUser,
     ShowUser,
     Search,
-    Update,
+    UpdateUser,
     Destroy
   },
   article: {
     CreateArticle,
-    ShowArticle
+    ShowArticle,
+    UpdateArticle
   }
 }
