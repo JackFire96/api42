@@ -1,14 +1,15 @@
 // Core
-const mock = require('../../models/get-user.js')
+const Schema = require('../../models/user.js')
 const validator = require('node-validator')
 
 const check = validator.isObject()
   .withRequired('name', validator.isString())
 
 module.exports = class Update {
-  constructor (app) {
+  constructor (app, config, connect) {
     this.app = app
-
+    this.config = config
+    this.UserModel = connect.model('User', Schema)
     this.run()
   }
 
@@ -17,21 +18,12 @@ module.exports = class Update {
    */
   middleware () {
     this.app.put('/user/update/:id', validator.express(check), (req, res) => {
+      var conditions = { _id: req.params.id }
       try {
-        if (!req.params || !req.params.id.length) {
-          res.status(404).json({
-            code: 404,
-            message: 'Not Found'
-          })
-        }
-
-        const name = req.body.name
-        const user = mock[req.params.id]
-
-        user.name = name
-
-        res.status(200).json({
-          [req.params.id]: user
+        this.UserModel.Update(conditions, req.body).then(user => {
+          res.status(200).json(user || {})
+        }).catch(() => {
+          res.status(200).json({})
         })
       } catch (e) {
         console.error(`[ERROR] user/update -> ${e}`)
